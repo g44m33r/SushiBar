@@ -2,13 +2,15 @@
 
 Content:
 * Testing ( https://github.com/g44m33r/SushiBar#php-unit-tests )
+* Algorithmus für die Sitzplatz-Suche ( https://github.com/g44m33r/SushiBar#algorithmus-zum-suchen-freier-sitzplätze )
+* Website Screenshots ( https://github.com/g44m33r/SushiBar#sushibar-website )
 
 Externe Quellen:
 * https://getbootstrap.com BootstrapCSS
 * https://unsplash.com/photos/wmPDe9OnXT4 Sushi Bild von Luigi Pozzoli
 
 Klassen:
-* Sushibar.class.php
+* Sushibar.class.php ( https://github.com/g44m33r/SushiBar#algorithmus-zum-suchen-freier-sitzplätze )
 * Seat.class.php
 * Group.class.php
 
