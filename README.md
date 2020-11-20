@@ -221,5 +221,5 @@ Es kommt 1 Person in die SushiBar. Der Algorithmus wählt Platz 13 aus, da dort 
 Es könnte ja sein, dass 2 Paare nach dem 1 Gast hereinkommen, somit wäre für 1 Paar kein Platz mehr in der Sushibar. Es könnte aber auch sein, dass eine Gruppe von 3 Studienkollegen und eine einzelne Person zum essen in die SushiBar kommen. Somit wäre der Platz effizient und am besten vergeben.
 Deshalb wurde sich hier für die Variante mit den wenigsten angrenzenden freien Plätzen entschieden. So oder so, weiß keiner wie viele Personen als nächstes in die SushiBar kommen.
 
-
+![Beispiel_01](screenshots/sitzplatz_example_03.PNG)
 
