@@ -8,7 +8,7 @@
         private $seat_amount;
         private $seats;
         private $name;
-        private $guests = [];
+        private $groups = [];
                 
         /**
          * __construct
@@ -26,7 +26,7 @@
                 $name = "F&P Sushibar";
             }
             
-            if ( $seats == null || $seats === 0 ) {
+            if ( $seats <= 0 ) {
                 $seats = 10;
             }
 
@@ -65,7 +65,7 @@
                 $seat->setFree();
             }
 
-            $this->guests = [];
+            $this->groups = [];
         }
       
         /**
@@ -83,7 +83,7 @@
          * @return Guest[]
          */
         function getGroups() {
-            return $this->guests;
+            return $this->groups;
         }
         
         /**
@@ -96,15 +96,15 @@
 
             $id = intval($id);
 
-            if ( array_key_exists($id, $this->guests) ) {
-                foreach ($this->guests[$id]->getSeats() as $seat) {
+            if ( array_key_exists($id, $this->groups) ) {
+                foreach ($this->groups[$id]->getSeats() as $seat) {
                     // echo $seat->getStatus();
                     $seat->setFree();
-                    unset($this->guests[$id]);
+                    unset($this->groups[$id]);
                 }
     
                 # Array index neu erstellen
-                $this->guests = array_values($this->guests);
+                $this->groups = array_values($this->groups);
 
                 return true;
 
@@ -153,7 +153,6 @@
             // Ansonsten funktioniert === nicht mehr da keine automatische konvertierung
             $amount = intval($amount);
 
-
             # Prüfen ob schon Sitzplätze im Lokal belegt sind, falls nein dann bei Sitzplatz 0 beginnen
             if( $this->freeSeats() === $this->seat_amount ) {
                 # Seat them at Seat 0 since everything is free
@@ -199,7 +198,7 @@
          * @param  int $currentSeat - Sitzplatz an dem gestartet wird
          * @param  int $remainingSeats - Anzahl an übrigen Sitzplätzen die zu Prüfen sind
          * @param  string $direction - Richtung in die geprüft wird ( right / left)
-         * @return void
+         * @return int
          */
         function rec_findFreeSeat($currentSeat, $remainingSeats, $direction) {
 
@@ -281,7 +280,7 @@
             }
 
             # Gruppe erstellen, damit beim verlassen die Sitzplätze freigegebene werden können
-            array_push($this->guests, new Group($groupSize, $nowOccupiedSeats));
+            array_push($this->groups, new Group($groupSize, $nowOccupiedSeats));
             return $nowOccupiedSeats;
         }
         
@@ -291,7 +290,7 @@
          * Funktion um freie Sitzplätze für die Gruppengröße $groupAmount zu finden
          * Gibt ein Array an möglichen Sitzplätzen zurück
          * @param  int $groupAmount
-         * @return Seat[] inkl. Seat Score
+         * @return array inkl. Seat Score
          */
         function findFreeSeats($groupAmount) {
             $possibleStartingPoints = [];
@@ -390,7 +389,7 @@
          * $possibleStartingPoints ist das Array an Sitzplätzen mit der jeweiligen Richtung die für die Gruppe in Frage kommen
          * @param  Seat[] $possibleStartingPoints
          * @param  int $amount
-         * @return void
+         * @return array Bester Platz wird zurückgegeben
          */
         function evaluateStartingPoints($possibleStartingPoints,$amount) {
 
