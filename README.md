@@ -9,6 +9,10 @@ Klassen:
 * Seat.class.php
 * Group.class.php
 
+Installation:
+Einfach das komplette Repo auf den Webserver der Wahl ( mit PHP Untersütztung eg. PHP-FPM + NGINX ) schieben und per Browser aufrufen.
+Der Einfachheit halber wurde auf eine Datenbank verzichtet, somit wir die Sushibar Klasse in der $_SESSION gespeichert.
+
 ## Sushibar.class.php
 
 ### Konstruktor
